@@ -1,0 +1,61 @@
+{
+  "products": [
+    {
+      "name": "Product mới",
+      "id": 1
+    },
+    {
+      "name": "user2vvv",
+      "price": 333,
+      "id": 2
+    },
+    {
+      "name": "user2",
+      "id": 3
+    },
+    {
+      "name": "user2",
+      "id": 4
+    },
+    {
+      "name": "user2",
+      "id": 5
+    },
+    {
+      "name": "user2",
+      "id": 6
+    },
+    {
+      "name": "user2",
+      "id": 7
+    },
+    {
+      "name": "user2",
+      "id": 8
+    },
+    {
+      "name": "user2",
+      "id": 9
+    },
+    {
+      "name": "user2",
+      "id": 10
+    },
+    {
+      "name": "user2",
+      "id": 11
+    },
+    {
+      "name": "user2",
+      "price": 22222,
+      "id": 12
+    }
+  ],
+  "users": [
+    {
+      "email": "lfffdsfhhfff@gmail.com",
+      "password": "$2a$10$cUps955GizyzqrYjdwZLhO7RM26pSEVv2zZEYg3Ps8gZ7.b14yNLa",
+      "id": 2
+    }
+  ]
+}
