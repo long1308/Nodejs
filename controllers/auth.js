@@ -48,6 +48,7 @@ export const signup = async (req, res) => {
 };
 export const signin = async (req, res) => {
   try {
+    console.log(1);
     const { email, password } = req.body;
     //validate
     const { error } = signinSchema.validate(req.body, { abortEarly: false });

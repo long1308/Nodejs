@@ -3,12 +3,7 @@ import dotenv from "dotenv";
 import Products from "../models/product";
 dotenv.config();
 //validate
-import joi from "joi";
-const productSchema = joi.object({
-  name: joi.string().required(),
-  price: joi.number().required(),
-  description: joi.string(),
-});
+import { productSchema } from "../Schemas/product.js";
 
 export const getAll = async (req, res) => {
   try {
