@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import User from "../models/user";
 dotenv.config();
-
 export const checkPermission = async (req, res, next) => {
   try {
     // Bước 1: kiểm tra thông tin token gửi có không? Nếu không có thì thông báo cần phải đăng nhập
@@ -25,6 +24,7 @@ export const checkPermission = async (req, res, next) => {
         .status(401)
         .json({ message: "Bạn không có quyền truy cập tài nguyên" });
     }
+    req.user = user;
     next();
   } catch (error) {
     return res.status(401).json({ message: "No token provided" });

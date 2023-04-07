@@ -8,10 +8,10 @@ import {
 } from "../controllers/product";
 import { checkPermission } from "../middlewares/checkPermission";
 const router = express.Router();
-router.get("/products", getAll);
-router.get("/products/:id", get);
-router.post("/products", add);
-router.put("/products/:id", update);
-router.delete("/products/:id", deleteProduct);
+router.get("/products", checkPermission, getAll);
+router.get("/products/:id", checkPermission, get);
+router.post("/products", checkPermission, add);
+router.put("/products/:id", checkPermission, update);
+router.delete("/products/:id", checkPermission, deleteProduct);
 
 export default router;

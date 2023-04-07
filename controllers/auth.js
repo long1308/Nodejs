@@ -84,6 +84,7 @@ export const signin = async (req, res) => {
       accessToken: token,
       user,
     });
+    
   } catch (error) {
     res.status(500).json({
       message: error,

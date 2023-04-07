@@ -4,11 +4,20 @@ import Products from "../models/product";
 dotenv.config();
 //validate
 import { productSchema } from "../Schemas/product.js";
+import Category from "../models/category";
 
 export const getAll = async (req, res) => {
+  //asc từ bé đến lớn dessc
+  const { _sort = "createdAt", _limit = 10, _order = "asc" } = req.query;
+  const option = {
+    limit: _limit,
+    sort: {
+      [_sort]: _order === "asc" ? 1 : -1,
+    },
+  };
   try {
     // const { data } = await axios.get(`${process.env.API_URL}/products`);
-    const data = await Products.find();
+    const data = await Products.paginate({}, option);
 
     if (data.length == 0) {
       return res.status(404).json({ message: "Lấy sản phẩm thất bại" });
@@ -25,14 +34,14 @@ export const get = async (req, res) => {
     //   `${process.env.API_URL}/products/${req.params.id}`
     // );
     // const data = await Products.find({_id : req.params.id});
-    const data = await Products.findById(req.params.id);
+    const data = await Products.findById(req.params.id).populate("categoryId");
     if (data.length == 0) {
       return res.status(400).json({ message: "Lấy sản phẩm 1 thất bại" });
     } else {
       return res.status(200).json(data);
     }
   } catch (error) {
-    return res.status(500).json({ message: error });
+    return res.status(500).json({ message: error.messages });
   }
 };
 export const add = async (req, res) => {
@@ -47,13 +56,16 @@ export const add = async (req, res) => {
     //   req.body
     // );
     const data = await Products.create(req.body);
+    await Category.findByIdAndUpdate(data.categoryId, {
+      $addToSet: { products: data._id },
+    });
     if (data.length == 0) {
       return res.status(400).json({ message: "Thêm  sản phẩm thất bại" });
     } else {
       return res.status(200).json(data);
     }
   } catch (error) {
-    return res.status(500).json({ message: message });
+    return res.status(500).json({ message: error.message });
   }
 };
 export const update = async (req, res) => {
